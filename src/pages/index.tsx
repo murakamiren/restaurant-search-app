@@ -1,7 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useGeolocation } from "@/hooks/useGeolocation";
 
 export default function Home() {
+  const { currentPos, errorMessage, getPos } = useGeolocation();
+
   return (
     <div>
       <Head>
@@ -12,6 +15,15 @@ export default function Home() {
 
       <h1>hello world</h1>
       <Link href="/test">go to test</Link>
+      <div>
+        <button onClick={() => getPos()}>geo</button>
+      </div>
+      <p>
+        {currentPos
+          ? `緯度: ${currentPos.coords.latitude} 経度: ${currentPos.coords.longitude}`
+          : "位置不明"}
+      </p>
+      {errorMessage ? errorMessage : null}
     </div>
   );
 }
