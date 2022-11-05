@@ -1,5 +1,7 @@
+import { Button, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
+
 import { useGeolocation } from "@/hooks/useGeolocation";
 
 export default function Home() {
@@ -13,16 +15,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>hello world</h1>
+      <Heading as="h1">hello world</Heading>
       <Link href="/test">go to test</Link>
       <div>
-        <button onClick={() => getPos()}>geo</button>
+        <Button onClick={() => getPos()}>geo</Button>
       </div>
-      <p>
+      <Text>
         {currentPos
           ? `緯度: ${currentPos.coords.latitude} 経度: ${currentPos.coords.longitude}`
           : "位置不明"}
-      </p>
+      </Text>
       {errorMessage ? errorMessage : null}
     </div>
   );
