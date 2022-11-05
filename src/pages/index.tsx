@@ -1,12 +1,32 @@
-import { Button, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+  Text,
+} from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 
+import { ShopFetchResult } from "@/@types/resultsType";
 import { useGeolocation } from "@/hooks/useGeolocation";
+import fetcher from "@/lib/fetcher";
 
 const Index: NextPage = () => {
   const { currentPos, errorMessage, getPos } = useGeolocation();
+  const [range, setRange] = useState(0);
+
+  const handleOnClick = async () => {
+    const params = {
+      lat: currentPos?.coords.latitude,
+      lng: currentPos?.coords.longitude,
+    };
+    const data = await fetcher<ShopFetchResult>("/api/shop", params);
+    console.log(data.results.shop);
+  };
 
   return (
     <div>
@@ -19,6 +39,15 @@ const Index: NextPage = () => {
       <Link href="/test">go to test</Link>
       <div>
         <Button onClick={() => getPos()}>geo</Button>
+      </div>
+      <Slider aria-label="slider" onChange={(e) => setRange(e)}>
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+      <div>
+        <Button onClick={() => handleOnClick()}>fetch</Button>
       </div>
       <Text>
         {currentPos
