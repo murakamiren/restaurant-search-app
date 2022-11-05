@@ -26,6 +26,7 @@ export const useGeolocation = () => {
             break;
         }
       },
+      { enableHighAccuracy: true },
     );
   };
 
