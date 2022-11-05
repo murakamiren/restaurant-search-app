@@ -1,32 +1,25 @@
-import {
-  Button,
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Select, Spinner, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import useSWR from "swr";
 
-import { ShopFetchResult } from "@/@types/resultsType";
+import { ShopFetchResult } from "@/@types/api/resultsType";
+import ShopCard from "@/components/shopCard/shopCard";
+import { selectValue } from "@/constant/form/selectValue";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import fetcher from "@/lib/fetcher";
 
 const Index: NextPage = () => {
   const { currentPos, errorMessage, getPos } = useGeolocation();
-  const [range, setRange] = useState(0);
-
-  const handleOnClick = async () => {
-    const params = {
-      lat: currentPos?.coords.latitude,
-      lng: currentPos?.coords.longitude,
-    };
-    const data = await fetcher<ShopFetchResult>("/api/shop", params);
-    console.log(data.results.shop);
+  const params = {
+    lat: currentPos?.coords.latitude,
+    lng: currentPos?.coords.longitude,
   };
+  const { data: shopData } = useSWR<ShopFetchResult>(
+    currentPos ? ["/api/shop", params] : null,
+    fetcher,
+  );
 
   return (
     <div>
@@ -37,24 +30,37 @@ const Index: NextPage = () => {
       </Head>
 
       <Link href="/test">go to test</Link>
-      <div>
-        <Button onClick={() => getPos()}>geo</Button>
-      </div>
-      <Slider aria-label="slider" onChange={(e) => setRange(e)}>
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <SliderThumb />
-      </Slider>
-      <div>
-        <Button onClick={() => handleOnClick()}>fetch</Button>
-      </div>
+      <Box display="flex">
+        <Select placeholder="範囲">
+          {Object.keys(selectValue).map((range) => (
+            <option key={range} value={selectValue[range]}>
+              {range}
+            </option>
+          ))}
+        </Select>
+        <Button onClick={() => getPos()}>検索</Button>
+      </Box>
       <Text>
         {currentPos
           ? `緯度: ${currentPos.coords.latitude} 経度: ${currentPos.coords.longitude}`
           : "位置不明"}
       </Text>
       {errorMessage ? errorMessage : null}
+      <Box>
+        {shopData ? (
+          shopData.results.shop.map((shop) => (
+            <ShopCard
+              key={shop.name}
+              name={shop.name}
+              access={shop.access}
+              address={shop.address}
+              src={shop.photo.pc.l}
+            />
+          ))
+        ) : (
+          <Spinner />
+        )}
+      </Box>
     </div>
   );
 };
