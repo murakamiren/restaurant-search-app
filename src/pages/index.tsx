@@ -14,10 +14,8 @@ import { searchParamAtom } from "@/store/searchParamAtom";
 const Index: NextPage = () => {
   const [searchParam] = useAtom(searchParamAtom);
 
-  console.log(searchParam);
-
   const { data: shopData } = useSWR<ShopFetchResult>(
-    searchParam ? ["/api/shop", searchParam] : null,
+    searchParam?.lat ? ["/api/shop", searchParam] : null,
     fetcher,
   );
 

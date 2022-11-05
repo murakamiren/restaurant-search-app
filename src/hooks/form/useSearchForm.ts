@@ -11,10 +11,9 @@ import { useGeolocation } from "../useGeolocation";
 const useSearchForm = () => {
   const setSearchParam = useSetAtom(searchParamAtom);
   const toast = useToast();
-  const { currentPos, errorMessage, getPos } = useGeolocation();
-  const onSubmit: SubmitHandler<SearchFormValueType> = (FormValue) => {
-    getPos();
+  const { currentPos, errorMessage } = useGeolocation();
 
+  const onSubmit: SubmitHandler<SearchFormValueType> = async (FormValue) => {
     if (!currentPos && errorMessage)
       return toast({
         title: "位置情報が取得できません",
@@ -23,7 +22,6 @@ const useSearchForm = () => {
         duration: 5000,
         isClosable: true,
       });
-    console.log(FormValue);
 
     if (currentPos) {
       const param: SearchParamType = {

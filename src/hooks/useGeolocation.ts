@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useGeolocation = () => {
   const [currentPos, setCurrentPos] = useState<GeolocationPosition | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const getPos = () => {
+  useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         setCurrentPos(() => pos);
@@ -28,7 +28,7 @@ export const useGeolocation = () => {
       },
       { enableHighAccuracy: true },
     );
-  };
+  }, []);
 
-  return { currentPos, errorMessage, getPos };
+  return { currentPos, errorMessage };
 };
