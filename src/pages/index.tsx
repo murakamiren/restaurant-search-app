@@ -1,12 +1,12 @@
-import { Box, Button, Select, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Spinner, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import useSWR from "swr";
 
 import { ShopFetchResult } from "@/@types/api/resultsType";
+import SearchFormMemo from "@/components/form/searchForm";
 import ShopCard from "@/components/shopCard/shopCard";
-import { selectValue } from "@/constant/form/selectValue";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import fetcher from "@/lib/fetcher";
 
@@ -31,15 +31,9 @@ const Index: NextPage = () => {
 
       <Link href="/test">go to test</Link>
       <Box display="flex">
-        <Select placeholder="範囲">
-          {Object.keys(selectValue).map((range) => (
-            <option key={range} value={selectValue[range]}>
-              {range}
-            </option>
-          ))}
-        </Select>
         <Button onClick={() => getPos()}>検索</Button>
       </Box>
+      <SearchFormMemo />
       <Text>
         {currentPos
           ? `緯度: ${currentPos.coords.latitude} 経度: ${currentPos.coords.longitude}`
