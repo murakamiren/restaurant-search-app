@@ -7,8 +7,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<ShopFetchResult>) => {
   const params = req.query;
+  console.log(params);
+
   const fetchResults = await fetcher<ShopFetchResult>(`${apiBaseUrl}`, params);
-  console.log(fetchResults);
 
   res.status(200).json(fetchResults);
 };

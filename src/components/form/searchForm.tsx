@@ -1,17 +1,16 @@
 import { Box, Button } from "@chakra-ui/react";
 import { FC, memo } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import SearchFormValueType from "@/@types/form/searchFormValueType";
+import useSearchForm from "@/hooks/form/useSearchForm";
 
 import RangeSelectMemo from "./rangeSelect/rangeSelect";
 import TextInputMemo from "./textInput/textInput";
 
 const SearchForm: FC = () => {
   const { handleSubmit, register } = useForm<SearchFormValueType>();
-  const onSubmit: SubmitHandler<SearchFormValueType> = (data) => {
-    console.log(data);
-  };
+  const onSubmit = useSearchForm();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

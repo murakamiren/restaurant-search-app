@@ -1,4 +1,5 @@
-import { Box, Button, Spinner, Text } from "@chakra-ui/react";
+import { Box, Spinner } from "@chakra-ui/react";
+import { useAtom } from "jotai";
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -7,17 +8,16 @@ import useSWR from "swr";
 import { ShopFetchResult } from "@/@types/api/resultsType";
 import SearchFormMemo from "@/components/form/searchForm";
 import ShopCard from "@/components/shopCard/shopCard";
-import { useGeolocation } from "@/hooks/useGeolocation";
 import fetcher from "@/lib/fetcher";
+import { searchParamAtom } from "@/store/searchParamAtom";
 
 const Index: NextPage = () => {
-  const { currentPos, errorMessage, getPos } = useGeolocation();
-  const params = {
-    lat: currentPos?.coords.latitude,
-    lng: currentPos?.coords.longitude,
-  };
+  const [searchParam, setSearchParam] = useAtom(searchParamAtom);
+
+  console.log(searchParam);
+
   const { data: shopData } = useSWR<ShopFetchResult>(
-    currentPos ? ["/api/shop", params] : null,
+    searchParam ? ["/api/shop", searchParam] : null,
     fetcher,
   );
 
@@ -30,16 +30,7 @@ const Index: NextPage = () => {
       </Head>
 
       <Link href="/test">go to test</Link>
-      <Box display="flex">
-        <Button onClick={() => getPos()}>検索</Button>
-      </Box>
       <SearchFormMemo />
-      <Text>
-        {currentPos
-          ? `緯度: ${currentPos.coords.latitude} 経度: ${currentPos.coords.longitude}`
-          : "位置不明"}
-      </Text>
-      {errorMessage ? errorMessage : null}
       <Box>
         {shopData ? (
           shopData.results.shop.map((shop) => (
