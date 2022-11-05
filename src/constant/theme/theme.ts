@@ -5,7 +5,9 @@ import fontsTheme from "./fontsTheme";
 
 const theme = extendTheme({
   fontsTheme,
-  floatingLabelTheme,
+  components: {
+    Form: floatingLabelTheme,
+  },
 });
 
 export default theme;
