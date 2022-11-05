@@ -12,7 +12,7 @@ import fetcher from "@/lib/fetcher";
 import { searchParamAtom } from "@/store/searchParamAtom";
 
 const Index: NextPage = () => {
-  const [searchParam, setSearchParam] = useAtom(searchParamAtom);
+  const [searchParam] = useAtom(searchParamAtom);
 
   console.log(searchParam);
 
