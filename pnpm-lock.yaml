@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@chakra-ui/anatomy': ^2.0.7
   '@chakra-ui/react': ^2.3.7
   '@emotion/react': ^11
   '@emotion/styled': ^11
@@ -28,6 +29,7 @@ specifiers:
   typescript: 4.8.4
 
 dependencies:
+  '@chakra-ui/anatomy': 2.0.7
   '@chakra-ui/react': 2.3.7_4hhzl37apollvxcsczsxiqg5ni
   '@emotion/react': 11.10.5_bbvjflvjoibwhtpmedigb26h6y
   '@emotion/styled': 11.10.5_wm6ohc3abj5yburmg6pjdgzp24
