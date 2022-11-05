@@ -1,10 +1,11 @@
-import { Button, Heading, Text } from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
+import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 
 import { useGeolocation } from "@/hooks/useGeolocation";
 
-export default function Home() {
+const Index: NextPage = () => {
   const { currentPos, errorMessage, getPos } = useGeolocation();
 
   return (
@@ -15,7 +16,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Heading as="h1">hello world</Heading>
       <Link href="/test">go to test</Link>
       <div>
         <Button onClick={() => getPos()}>geo</Button>
@@ -28,4 +28,6 @@ export default function Home() {
       {errorMessage ? errorMessage : null}
     </div>
   );
-}
+};
+
+export default Index;
