@@ -10,7 +10,7 @@ type Props = {
 
 const ShopCard: FC<Props> = ({ name, access, address, src }) => {
   return (
-    <Box>
+    <Box borderRadius={8} shadow="base">
       <Heading as="h3">{name}</Heading>
       <Text>{access}</Text>
       <Text>{address}</Text>

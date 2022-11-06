@@ -14,12 +14,14 @@ const Index: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Box display="flex" justifyContent="center" w="full" py={12} bgColor="blackAlpha.200">
-        <SearchFormMemo />
-      </Box>
-      <Box>
-        <ShopCardView />
-      </Box>
+      <main>
+        <Box display="flex" justifyContent="center" w="full" py={12} bgColor="blackAlpha.200">
+          <SearchFormMemo />
+        </Box>
+        <Box display="flex" flexWrap="wrap">
+          <ShopCardView />
+        </Box>
+      </main>
     </div>
   );
 };
