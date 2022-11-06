@@ -8,6 +8,7 @@ const useShopDataFetch = (param: SearchParamType | null) => {
   const { data, error, isValidating } = useSWR<ShopFetchResult>(
     param?.lat ? ["/api/shop", param] : null,
     fetcher,
+    { revalidateOnFocus: false },
   );
 
   return { shopData: data, isError: error, isValidating };
