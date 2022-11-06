@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 
 import SearchFormMemo from "@/components/form/searchForm";
-import ShopCardView from "@/components/shopCard/shopCardView/shopCardView";
+import ShopCardViewMemo from "@/components/shopCard/shopCardView/shopCardView";
 
 const Index: NextPage = () => {
   return (
@@ -18,9 +18,8 @@ const Index: NextPage = () => {
         <Box display="flex" justifyContent="center" w="full" py={12} bgColor="blackAlpha.200">
           <SearchFormMemo />
         </Box>
-        <Box display="flex" flexWrap="wrap">
-          <ShopCardView />
-        </Box>
+
+        <ShopCardViewMemo />
       </main>
     </div>
   );
