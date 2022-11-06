@@ -28,7 +28,9 @@ const Index: NextPage = () => {
       </Head>
 
       <Link href="/test">go to test</Link>
-      <SearchFormMemo />
+      <Box display="flex" justifyContent="center" w="full">
+        <SearchFormMemo />
+      </Box>
       <Box>
         {shopData ? (
           shopData.results.shop.map((shop) => (

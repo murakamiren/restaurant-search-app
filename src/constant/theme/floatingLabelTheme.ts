@@ -30,6 +30,7 @@ const floatingLabelTheme = extendTheme({
           px: 1,
           my: 2,
           transformOrigin: "left top",
+          color: "gray.500",
         },
       },
     },

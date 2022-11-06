@@ -8,7 +8,7 @@ type Props = CommonFormProps;
 const TextInput: FC<Props> = ({ register, registerName, labelText }) => {
   const id = useId();
   return (
-    <FormControl variant="floating">
+    <FormControl variant="floating" flex="1">
       <Input placeholder=" " id={`${id}-${registerName}`} {...register(registerName)} />
       <FormLabel htmlFor={`${id}-${registerName}`}>{labelText}</FormLabel>
     </FormControl>

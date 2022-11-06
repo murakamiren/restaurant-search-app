@@ -13,8 +13,8 @@ const SearchForm: FC = () => {
   const onSubmit = useSearchForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Box display="flex">
+    <form onSubmit={handleSubmit(onSubmit)} style={{ width: "80%" }}>
+      <Box display="flex" w="100%" p={8} shadow="lg" borderRadius={8}>
         <TextInputMemo register={register} registerName="name_any" labelText="店舗名" />
         <TextInputMemo register={register} registerName="keyword" labelText="キーワード" />
         <RangeSelectMemo
