@@ -1,23 +1,11 @@
-import { Box, Spinner } from "@chakra-ui/react";
-import { useAtom } from "jotai";
+import { Box } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
-import useSWR from "swr";
 
-import { ShopFetchResult } from "@/@types/api/resultsType";
 import SearchFormMemo from "@/components/form/searchForm";
-import ShopCard from "@/components/shopCard/shopCard";
-import fetcher from "@/lib/fetcher";
-import { searchParamAtom } from "@/store/searchParamAtom";
+import ShopCardView from "@/components/shopCard/shopCardView/shopCardView";
 
 const Index: NextPage = () => {
-  const [searchParam] = useAtom(searchParamAtom);
-
-  const { data: shopData } = useSWR<ShopFetchResult>(
-    searchParam?.lat ? ["/api/shop", searchParam] : null,
-    fetcher,
-  );
-
   return (
     <div>
       <Head>
@@ -30,19 +18,7 @@ const Index: NextPage = () => {
         <SearchFormMemo />
       </Box>
       <Box>
-        {shopData ? (
-          shopData.results.shop.map((shop) => (
-            <ShopCard
-              key={shop.name}
-              name={shop.name}
-              access={shop.access}
-              address={shop.address}
-              src={shop.photo.pc.l}
-            />
-          ))
-        ) : (
-          <Spinner />
-        )}
+        <ShopCardView />
       </Box>
     </div>
   );
