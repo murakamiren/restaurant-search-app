@@ -16,7 +16,7 @@ type Props = {
 
 const ShopCard: FC<Props> = ({ name, access, address, src, genre }) => {
   return (
-    <GridItem borderRadius={12} shadow="base" p={10} height="auto">
+    <GridItem borderRadius={12} shadow="base" p={10} height="auto" cursor="pointer">
       <Flex flexDir="column" justifyContent="space-between" height="100%">
         <Box>
           <Heading as="h3" fontSize="2xl">

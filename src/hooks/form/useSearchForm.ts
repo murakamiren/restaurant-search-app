@@ -5,10 +5,12 @@ import { SubmitHandler } from "react-hook-form";
 import SearchParamType from "@/@types/api/searchParamType";
 import SearchFormValueType from "@/@types/form/searchFormValueType";
 import { searchParamAtom } from "@/store/searchParamAtom";
+import { startAtom } from "@/store/startAtom";
 
 import { useGeolocation } from "../useGeolocation";
 
 const useSearchForm = () => {
+  const setStart = useSetAtom(startAtom);
   const setSearchParam = useSetAtom(searchParamAtom);
   const toast = useToast();
   const { currentPos, errorMessage } = useGeolocation();
@@ -22,6 +24,8 @@ const useSearchForm = () => {
         duration: 5000,
         isClosable: true,
       });
+
+    setStart(() => 1);
 
     if (currentPos) {
       const param: SearchParamType = {

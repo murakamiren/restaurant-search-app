@@ -1,36 +1,60 @@
-import { Spinner, Text } from "@chakra-ui/react";
-import { useAtom } from "jotai";
-import { FC } from "react";
+import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
+import { useAtom, useAtomValue } from "jotai";
+import { FC, memo } from "react";
 
+import PaginationMemo from "@/components/pagination/pagination";
+import SearchInfoMemo from "@/components/searchInfo/searchInfo";
 import useShopDataFetch from "@/hooks/fetch/useShopDataFetch";
 import { searchParamAtom } from "@/store/searchParamAtom";
+import { startAtom } from "@/store/startAtom";
 
 import ShopCard from "../shopCard";
 
 const ShopCardView: FC = () => {
+  const start = useAtomValue(startAtom);
   const [searchParam] = useAtom(searchParamAtom);
 
-  const { shopData, isError, isValidating } = useShopDataFetch(searchParam);
+  const { shopData, isError, isValidating } = useShopDataFetch(searchParam, start);
 
   if (isValidating) return <Spinner />;
 
-  if (!shopData) return <Text>まだ検索していません</Text>;
+  if (!shopData)
+    return (
+      <Box display="flex" justifyContent="center" mt={12} px={{ base: 4, lg: 8 }}>
+        <Heading as="h2" fontSize={{ base: "xl", lg: "3xl" }}>
+          検索するを押して検索してください
+        </Heading>
+      </Box>
+    );
 
   if (isError) return <Text>error</Text>;
 
   return (
     <>
-      {shopData.results.shop.map((shop) => (
-        <ShopCard
-          key={shop.name}
-          name={shop.name}
-          access={shop.access}
-          address={shop.address}
-          src={shop.photo.pc.l}
-        />
-      ))}
+      <SearchInfoMemo count={shopData.results.results_available} />
+      <Box
+        display="grid"
+        gridTemplateColumns="repeat(auto-fill, minmax(min(360px, 100%), 1fr))"
+        gap={8}
+        mt={12}
+        px={{ base: 4, lg: 8 }}
+      >
+        {shopData.results.shop.map((shop) => (
+          <ShopCard
+            key={shop.name}
+            name={shop.name}
+            access={shop.access}
+            address={shop.address}
+            src={shop.photo.pc.l}
+            genre={shop.genre}
+          />
+        ))}
+      </Box>
+      <PaginationMemo totalCount={shopData.results.results_available} />
     </>
   );
 };
 
-export default ShopCardView;
+const ShopCardViewMemo = memo(ShopCardView);
+
+export default ShopCardViewMemo;
