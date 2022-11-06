@@ -14,7 +14,7 @@ const SearchInfo: FC<Props> = ({ count }) => {
 
   return (
     <Box w="full" display="flex" justifyContent="center" mt={12}>
-      <Heading as="h2" fontSize="3xl">
+      <Heading as="h2" fontSize={{ base: "xl", lg: "3xl" }}>
         {count}件の店舗が見つかりました
       </Heading>
     </Box>
