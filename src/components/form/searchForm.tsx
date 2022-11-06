@@ -15,7 +15,7 @@ const SearchForm: FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} style={{ width: "80%" }}>
       <Box display="flex" w="100%" p={8} shadow="lg" borderRadius={8}>
-        <TextInputMemo register={register} registerName="name_any" labelText="店舗名" />
+        <TextInputMemo register={register} registerName="name_any" labelText="店舗名" isFirst />
         <TextInputMemo register={register} registerName="keyword" labelText="キーワード" />
         <RangeSelectMemo
           register={register}
@@ -23,7 +23,9 @@ const SearchForm: FC = () => {
           labelText="検索範囲"
           placeholder="現在地からの半径"
         />
-        <Button type="submit">検索する</Button>
+        <Button type="submit" colorScheme="primary" borderLeftRadius={0}>
+          検索する
+        </Button>
       </Box>
     </form>
   );

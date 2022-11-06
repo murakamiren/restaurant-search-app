@@ -11,7 +11,12 @@ const RangeSelect: FC<Props> = ({ register, registerName, labelText, placeholder
 
   return (
     <FormControl variant="floating" flex="1">
-      <Select placeholder={placeholder} id={`${id}-select`} {...register(registerName)}>
+      <Select
+        placeholder={placeholder}
+        id={`${id}-select`}
+        {...register(registerName)}
+        borderRadius={0}
+      >
         {Object.keys(selectValue).map((range) => (
           <option key={selectValue[range]} value={selectValue[range]}>
             {range}

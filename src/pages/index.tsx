@@ -2,7 +2,6 @@ import { Box, Spinner } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import useSWR from "swr";
 
 import { ShopFetchResult } from "@/@types/api/resultsType";
@@ -27,7 +26,6 @@ const Index: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Link href="/test">go to test</Link>
       <Box display="flex" justifyContent="center" w="full">
         <SearchFormMemo />
       </Box>
