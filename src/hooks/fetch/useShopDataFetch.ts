@@ -1,4 +1,5 @@
 import { useSetAtom } from "jotai";
+import { useEffect } from "react";
 import useSWR from "swr";
 
 import { ResultOnly, ShopFetchResult } from "@/@types/api/resultsType";
@@ -22,8 +23,9 @@ const useShopDataFetch = (param: SearchParamType | null, start: number) => {
     results_returned: data?.results.results_returned,
     results_start: data?.results.results_start,
   };
-
-  setSearchInfo(() => info);
+  useEffect(() => {
+    setSearchInfo(() => info);
+  }, [param]);
 
   return { shopData: data, isError: error, isValidating };
 };
