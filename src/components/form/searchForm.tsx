@@ -24,7 +24,7 @@ const SearchForm: FC = () => {
             labelText="検索範囲"
             placeholder="現在地からの半径"
           />
-          <Button type="submit" colorScheme="primary" borderLeftRadius={0}>
+          <Button type="submit" colorScheme="primary" borderLeftRadius={{ base: "md", lg: 0 }}>
             検索する
           </Button>
         </Flex>
