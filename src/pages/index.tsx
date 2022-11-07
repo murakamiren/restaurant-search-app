@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
 
+import Footer from "@/components/footer/footer";
 import SearchFormMemo from "@/components/form/searchForm";
 import ShopCardViewMemo from "@/components/shopCard/shopCardView/shopCardView";
 
@@ -21,6 +22,7 @@ const Index: NextPage = () => {
 
         <ShopCardViewMemo />
       </main>
+      <Footer />
     </div>
   );
 };
