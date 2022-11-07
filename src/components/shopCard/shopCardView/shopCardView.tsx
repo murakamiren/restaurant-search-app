@@ -35,7 +35,8 @@ const ShopCardView: FC = () => {
       <Box
         display="grid"
         gridTemplateColumns="repeat(auto-fill, minmax(min(360px, 100%), 1fr))"
-        gap={8}
+        rowGap={20}
+        columnGap={12}
         mt={12}
         px={{ base: 4, lg: 8 }}
       >
