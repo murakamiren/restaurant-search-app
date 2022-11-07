@@ -45,6 +45,7 @@ const ShopCardView: FC = () => {
         {shopData.results.shop.map((shop) => (
           <ShopCard
             key={shop.name}
+            id={shop.id}
             name={shop.name}
             access={shop.access}
             address={shop.address}
