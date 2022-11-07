@@ -1,4 +1,4 @@
-import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
+import { Box, Divider, Flex, Heading, Spinner, Text } from "@chakra-ui/react";
 import { useAtom, useAtomValue } from "jotai";
 import { FC, memo } from "react";
 
@@ -32,12 +32,14 @@ const ShopCardView: FC = () => {
   return (
     <>
       <SearchInfoMemo count={shopData.results.results_available} />
+      <Flex justify="center">
+        <Divider my={12} w="80%" />
+      </Flex>
       <Box
         display="grid"
         gridTemplateColumns="repeat(auto-fill, minmax(min(360px, 100%), 1fr))"
         rowGap={20}
         columnGap={12}
-        mt={12}
         px={{ base: 4, lg: 8 }}
       >
         {shopData.results.shop.map((shop) => (

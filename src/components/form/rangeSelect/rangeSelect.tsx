@@ -15,7 +15,7 @@ const RangeSelect: FC<Props> = ({ register, registerName, labelText, placeholder
         placeholder={placeholder}
         id={`${id}-select`}
         {...register(registerName)}
-        borderRadius={0}
+        borderRadius={{ base: "md", lg: 0 }}
       >
         {Object.keys(selectValue).map((range) => (
           <option key={selectValue[range]} value={selectValue[range]}>

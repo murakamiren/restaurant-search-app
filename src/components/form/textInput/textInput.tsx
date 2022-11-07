@@ -13,8 +13,8 @@ const TextInput: FC<Props> = ({ register, registerName, labelText, isFirst, isLa
         placeholder=" "
         id={`${id}-${registerName}`}
         {...register(registerName)}
-        borderLeftRadius={isFirst ? "md" : 0}
-        borderRightRadius={isLast ? "md" : 0}
+        borderLeftRadius={isFirst ? "md" : { base: "md", lg: 0 }}
+        borderRightRadius={isLast ? "md" : { base: "md", lg: 0 }}
       />
       <FormLabel htmlFor={`${id}-${registerName}`}>{labelText}</FormLabel>
     </FormControl>
