@@ -1,8 +1,10 @@
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, HStack, Icon } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { FC, memo } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import { countPerPage } from "@/constant/api/setting";
+import usePagination from "@/hooks/pagination/usePagination";
 import { startAtom } from "@/store/startAtom";
 import range from "@/util/range";
 import { startCalc } from "@/util/startCalc";
@@ -15,13 +17,15 @@ type Props = {
 
 const Pagination: FC<Props> = ({ totalCount }) => {
   const [start, setStart] = useAtom(startAtom);
+  const { clickNext, clickPrev } = usePagination();
   const paginationMaxRange = Math.ceil(totalCount / countPerPage);
-
-  console.log(start);
 
   return (
     <Box w="full" mt={12}>
-      <HStack w="full" justify="center" spacing={8}>
+      <HStack w="full" justify="center" spacing={6}>
+        {start === 1 ? null : (
+          <Icon as={IoIosArrowBack} w={6} h={6} cursor="pointer" onClick={() => clickPrev()} />
+        )}
         {range(1, paginationMaxRange).map((number) => (
           <PaginationItemMemo
             key={number}
@@ -30,6 +34,9 @@ const Pagination: FC<Props> = ({ totalCount }) => {
             currentSelected={start === startCalc(number, countPerPage)}
           />
         ))}
+        {start === totalCount - 9 ? null : (
+          <Icon as={IoIosArrowForward} w={6} h={6} cursor="pointer" onClick={() => clickNext()} />
+        )}
       </HStack>
     </Box>
   );
