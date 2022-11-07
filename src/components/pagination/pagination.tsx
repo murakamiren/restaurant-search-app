@@ -3,22 +3,18 @@ import { useAtom } from "jotai";
 import { FC, memo } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-import { countPerPage } from "@/constant/api/setting";
 import usePagination from "@/hooks/pagination/usePagination";
 import { startAtom } from "@/store/startAtom";
-import range from "@/util/range";
-import { startCalc } from "@/util/startCalc";
 
-import PaginationItemMemo from "./paginationItem/paginationItem";
+import PaginationItemListMemo from "./paginationItemList/paginationItemList";
 
 type Props = {
   totalCount: number;
 };
 
 const Pagination: FC<Props> = ({ totalCount }) => {
-  const [start, setStart] = useAtom(startAtom);
+  const [start] = useAtom(startAtom);
   const { clickNext, clickPrev } = usePagination();
-  const paginationMaxRange = Math.ceil(totalCount / countPerPage);
 
   return (
     <Box w="full" mt={12}>
@@ -26,14 +22,7 @@ const Pagination: FC<Props> = ({ totalCount }) => {
         {start === 1 ? null : (
           <Icon as={IoIosArrowBack} w={6} h={6} cursor="pointer" onClick={() => clickPrev()} />
         )}
-        {range(1, paginationMaxRange).map((number) => (
-          <PaginationItemMemo
-            key={number}
-            number={number}
-            onCLick={() => setStart(() => startCalc(number, countPerPage))}
-            currentSelected={start === startCalc(number, countPerPage)}
-          />
-        ))}
+        <PaginationItemListMemo totalCount={totalCount} itemLimit={3} />
         {start === totalCount - 9 ? null : (
           <Icon as={IoIosArrowForward} w={6} h={6} cursor="pointer" onClick={() => clickNext()} />
         )}

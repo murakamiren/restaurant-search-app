@@ -51,7 +51,9 @@ const ShopCardView: FC = () => {
           />
         ))}
       </Box>
-      <PaginationMemo totalCount={shopData.results.results_available} />
+      {shopData.results.shop.length !== 0 ? (
+        <PaginationMemo totalCount={shopData.results.results_available} />
+      ) : null}
     </>
   );
 };
