@@ -7,7 +7,7 @@ const Header: FC = () => {
     <header>
       <Box
         w="full"
-        height="100px"
+        height="80px"
         display="flex"
         justifyContent="center"
         alignItems="center"
