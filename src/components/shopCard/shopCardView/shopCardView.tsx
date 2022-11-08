@@ -1,4 +1,4 @@
-import { Box, Divider, Flex, Heading, Spinner, Text } from "@chakra-ui/react";
+import { Box, Divider, Flex, Heading, Text } from "@chakra-ui/react";
 import { useAtom, useAtomValue } from "jotai";
 import { FC, memo } from "react";
 
@@ -16,7 +16,7 @@ const ShopCardView: FC = () => {
 
   const { shopData, isError, isValidating } = useShopDataFetch(searchParam, start);
 
-  if (isValidating) return <Spinner />;
+  if (isValidating) return null;
 
   if (!shopData)
     return (
@@ -51,6 +51,8 @@ const ShopCardView: FC = () => {
             address={shop.address}
             src={shop.photo.pc.l}
             genre={shop.genre}
+            lat={shop.lat}
+            lng={shop.lng}
           />
         ))}
       </Box>
