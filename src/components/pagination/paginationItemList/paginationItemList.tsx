@@ -24,8 +24,8 @@ const PaginationItemList: FC<Props> = ({ totalCount, itemLimit }) => {
       {paginationRangeArr
         .filter(
           (rangeNumber) =>
-            rangeNumber >= currentPaginationCount &&
-            currentPaginationCount + itemLimit - 1 >= rangeNumber,
+            rangeNumber >= currentPaginationCount - 2 &&
+            currentPaginationCount + itemLimit - 3 >= rangeNumber,
         )
         .map((number) => {
           return (
