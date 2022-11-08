@@ -4,6 +4,7 @@ import { FC } from "react";
 import { IoLocationSharp, IoRestaurantSharp } from "react-icons/io5";
 
 import { Genre } from "@/@types/api/shopType";
+import useDistance from "@/hooks/card/useDistance";
 
 import TextWithIcon from "../textWithIcon/textWithIcon";
 
@@ -14,9 +15,12 @@ type Props = {
   address: string;
   src: string;
   genre: Genre;
+  lat: number;
+  lng: number;
 };
 
-const ShopCard: FC<Props> = ({ id, name, access, address, src, genre }) => {
+const ShopCard: FC<Props> = ({ id, name, access, address, src, genre, lat, lng }) => {
+  const distance = useDistance([lng, lat]);
   return (
     <Link href={`shop/${id}`}>
       <GridItem
@@ -39,6 +43,9 @@ const ShopCard: FC<Props> = ({ id, name, access, address, src, genre }) => {
               <TextWithIcon text={address} icon={IoLocationSharp} />
               <TextWithIcon text={genre.name} icon={IoRestaurantSharp} />
             </VStack>
+            <Text mt={4} fontWeight="semibold">
+              現在地から: {distance}km
+            </Text>
           </Box>
           <Box w="full" height="300px" overflow="hidden" mt={8} borderRadius={10}>
             {src ? <Image src={src} alt={name} w="full" height="full" objectFit="cover" /> : null}
