@@ -9,7 +9,11 @@ type Props = {
 
 const PaginationItem: FC<Props> = ({ number, onCLick, currentSelected }) => {
   return (
-    <Button onClick={onCLick} colorScheme={currentSelected ? "primary" : "gray"}>
+    <Button
+      onClick={onCLick}
+      colorScheme={currentSelected ? "primary" : "gray"}
+      size={{ base: "sm", lg: "md" }}
+    >
       {number}
     </Button>
   );

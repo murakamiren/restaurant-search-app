@@ -23,11 +23,23 @@ const Pagination: FC<Props> = ({ totalCount }) => {
     <Box w="full" mt={12}>
       <HStack w="full" justify="center" spacing={6}>
         {start === 1 ? null : (
-          <Icon as={IoIosArrowBack} w={6} h={6} cursor="pointer" onClick={() => clickPrev()} />
+          <Icon
+            as={IoIosArrowBack}
+            w={{ base: 4, lg: 6 }}
+            h={{ base: 4, lg: 6 }}
+            cursor="pointer"
+            onClick={() => clickPrev()}
+          />
         )}
         <PaginationItemListMemo totalCount={totalCount} itemLimit={5} />
         {start >= totalCount - countPerPage ? null : (
-          <Icon as={IoIosArrowForward} w={6} h={6} cursor="pointer" onClick={() => clickNext()} />
+          <Icon
+            as={IoIosArrowForward}
+            w={{ base: 4, lg: 6 }}
+            h={{ base: 4, lg: 6 }}
+            cursor="pointer"
+            onClick={() => clickNext()}
+          />
         )}
       </HStack>
     </Box>
