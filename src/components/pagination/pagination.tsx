@@ -17,8 +17,6 @@ const Pagination: FC<Props> = ({ totalCount }) => {
   const [start] = useAtom(startAtom);
   const { clickNext, clickPrev } = usePagination();
 
-  console.log(start, totalCount - 9);
-
   return (
     <Box w="full" mt={12}>
       <HStack w="full" justify="center" spacing={6}>
