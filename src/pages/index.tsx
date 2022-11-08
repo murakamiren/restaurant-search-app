@@ -2,8 +2,8 @@ import { Box } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
 
-import Footer from "@/components/footer/footer";
 import SearchFormMemo from "@/components/form/searchForm";
+import Layout from "@/components/layout/layout";
 import ShopCardViewMemo from "@/components/shopCard/shopCardView/shopCardView";
 
 const Index: NextPage = () => {
@@ -15,14 +15,15 @@ const Index: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <Box display="flex" justifyContent="center" w="full" py={12} bgColor="blackAlpha.200">
-          <SearchFormMemo />
-        </Box>
+      <Layout>
+        <main>
+          <Box display="flex" justifyContent="center" w="full" py={12} bgColor="blackAlpha.200">
+            <SearchFormMemo />
+          </Box>
 
-        <ShopCardViewMemo />
-      </main>
-      <Footer />
+          <ShopCardViewMemo />
+        </main>
+      </Layout>
     </div>
   );
 };
