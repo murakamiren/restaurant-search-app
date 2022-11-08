@@ -19,6 +19,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@turf/distance": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
