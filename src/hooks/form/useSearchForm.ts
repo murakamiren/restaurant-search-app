@@ -15,9 +15,8 @@ const useSearchForm = () => {
   const toast = useToast();
   const { currentPos, errorMessage } = useGeolocation();
 
-  console.log("hello");
-
   const onSubmit: SubmitHandler<SearchFormValueType> = async (FormValue) => {
+    console.log("hello");
     if (!currentPos && errorMessage)
       return toast({
         title: "位置情報が取得できません",
