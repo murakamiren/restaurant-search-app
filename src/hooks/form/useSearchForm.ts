@@ -15,6 +15,8 @@ const useSearchForm = () => {
   const toast = useToast();
   const { currentPos, errorMessage } = useGeolocation();
 
+  console.log("hello");
+
   const onSubmit: SubmitHandler<SearchFormValueType> = async (FormValue) => {
     if (!currentPos && errorMessage)
       return toast({
