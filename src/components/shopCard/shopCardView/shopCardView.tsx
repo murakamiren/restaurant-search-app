@@ -5,18 +5,20 @@ import { FC, memo } from "react";
 import PaginationMemo from "@/components/pagination/pagination";
 import SearchInfoMemo from "@/components/searchInfo/searchInfo";
 import useShopDataFetch from "@/hooks/fetch/useShopDataFetch";
+import { useGeolocation } from "@/hooks/useGeolocation";
 import { searchParamAtom } from "@/store/searchParamAtom";
 import { startAtom } from "@/store/startAtom";
 
 import ShopCard from "../shopCard";
 
 const ShopCardView: FC = () => {
+  const { currentPos } = useGeolocation();
   const start = useAtomValue(startAtom);
   const [searchParam] = useAtom(searchParamAtom);
 
   const { shopData, isError, isValidating } = useShopDataFetch(searchParam, start);
 
-  if (isValidating) return null;
+  if (isValidating || !currentPos) return null;
 
   if (!shopData)
     return (
@@ -53,6 +55,7 @@ const ShopCardView: FC = () => {
             genre={shop.genre}
             lat={shop.lat}
             lng={shop.lng}
+            currentPos={currentPos}
           />
         ))}
       </Box>
