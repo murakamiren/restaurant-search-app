@@ -32,7 +32,7 @@ const Detail: FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Box mt={12} px={{ base: 4, lg: 16 }}>
+        <Box mt={12} px={{ base: 8, lg: 16 }}>
           <DetailTop data={data} />
           <Heading as="h3" fontSize={{ base: "xl", lg: "3xl" }} mt={12}>
             店舗情報
