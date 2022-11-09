@@ -7,6 +7,7 @@ import useShopDetailFetch from "@/hooks/fetch/useShopDetailFetch";
 import { useGeolocation } from "@/hooks/useGeolocation";
 
 import DetailInfo from "./detailInfo/detailInfo";
+import DetailMap from "./detailMap/detailMap";
 import DetailTop from "./detailTop/detailTop";
 
 const Detail: FC = () => {
@@ -39,6 +40,8 @@ const Detail: FC = () => {
           </Heading>
           <Divider my={6} />
           <DetailInfo lat={data.lat} lng={data.lng} currentPos={currentPos} data={data} />
+          <Divider my={6} />
+          <DetailMap lat={data.lat} lng={data.lng} />
           <Divider my={6} />
           <Link href={data.urls.pc} target="_blank" className="link-hotpepper">
             <Text
