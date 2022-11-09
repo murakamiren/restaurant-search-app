@@ -27,8 +27,6 @@ const useSearchForm = () => {
 
     setStart(() => 1);
 
-    console.log(currentPos);
-
     if (currentPos) {
       const param: SearchParamType = {
         lat: currentPos.coords.latitude,
