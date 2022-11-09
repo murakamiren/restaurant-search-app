@@ -4,7 +4,7 @@ import { FC, memo } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import { countPerPage } from "@/constant/api/setting";
-import usePagination from "@/hooks/pagination/usePagination";
+import usePagination from "@/hooks/component/pagination/usePagination";
 import { startAtom } from "@/store/startAtom";
 
 import PaginationItemListMemo from "./paginationItemList/paginationItemList";

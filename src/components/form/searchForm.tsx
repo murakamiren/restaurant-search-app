@@ -4,8 +4,8 @@ import { FC, memo } from "react";
 import { useForm } from "react-hook-form";
 
 import SearchFormValueType from "@/@types/form/searchFormValueType";
+import useSearchForm from "@/hooks/component/form/useSearchForm";
 import useShopDataFetch from "@/hooks/fetch/useShopDataFetch";
-import useSearchForm from "@/hooks/form/useSearchForm";
 import { searchParamAtom } from "@/store/searchParamAtom";
 import { startAtom } from "@/store/startAtom";
 

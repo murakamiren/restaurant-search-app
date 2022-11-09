@@ -4,6 +4,8 @@ import { FC, memo } from "react";
 
 import { searchInfoAtom } from "@/store/searchInfoAtom";
 
+import SortSelectMemo from "./sortSelect/sortSelect";
+
 type Props = {
   count: number;
 };
@@ -13,10 +15,18 @@ const SearchInfo: FC<Props> = ({ count }) => {
   if (!searchInfo) return null;
 
   return (
-    <Box w="full" display="flex" justifyContent="center" mt={12}>
-      <Heading as="h2" fontSize={{ base: "xl", lg: "3xl" }}>
-        {count}件の店舗が見つかりました
+    <Box
+      w="full"
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      px={{ base: 4, lg: 8 }}
+      mt={12}
+    >
+      <Heading as="h2" fontSize={{ base: "xl", lg: "2xl" }} flex="1">
+        検索結果：{count}件
       </Heading>
+      <SortSelectMemo />
     </Box>
   );
 };

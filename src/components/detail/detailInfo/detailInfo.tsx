@@ -47,7 +47,7 @@ const DetailInfo: FC<Props> = ({ lat, lng, currentPos, data }) => {
           <Text>カード：{data.card}</Text>
         </ListItem>
       </UnorderedList>
-      <Text mt={4} fontSize="xl" fontWeight="bold">
+      <Text mt={4} fontWeight="bold">
         現在地から：{distance()}km
       </Text>
     </>

@@ -46,6 +46,7 @@ const Detail: FC = () => {
               color="primary.600"
               sx={{ "&:Hover": { color: "primary.700" } }}
               display="inline"
+              fontSize="xl"
             >
               ホットペッパーグルメで見る
             </Text>

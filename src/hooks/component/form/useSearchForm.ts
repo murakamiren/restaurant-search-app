@@ -7,7 +7,7 @@ import SearchFormValueType from "@/@types/form/searchFormValueType";
 import { searchParamAtom } from "@/store/searchParamAtom";
 import { startAtom } from "@/store/startAtom";
 
-import { useGeolocation } from "../useGeolocation";
+import { useGeolocation } from "../../useGeolocation";
 
 const useSearchForm = () => {
   const setStart = useSetAtom(startAtom);

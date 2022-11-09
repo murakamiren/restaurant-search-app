@@ -7,7 +7,7 @@ import SearchParamType from "@/@types/api/searchParamType";
 import fetcher from "@/lib/fetcher";
 import { searchInfoAtom } from "@/store/searchInfoAtom";
 
-const useShopDataFetch = (param: SearchParamType | null, start: number) => {
+const useShopDataFetch = (param: SearchParamType | undefined, start: number) => {
   const setSearchInfo = useSetAtom(searchInfoAtom);
 
   const paramWithStart = { ...param, start };
