@@ -4,6 +4,7 @@ import Head from "next/head";
 
 import SearchFormMemo from "@/components/form/searchForm";
 import Layout from "@/components/layout/layout";
+import SearchInfoMemo from "@/components/searchInfo/searchInfo";
 import ShopCardViewMemo from "@/components/shopCard/shopCardView/shopCardView";
 
 const Index: NextPage = () => {
@@ -20,7 +21,7 @@ const Index: NextPage = () => {
           <Box display="flex" justifyContent="center" w="full" py={12} bgColor="blackAlpha.200">
             <SearchFormMemo />
           </Box>
-
+          <SearchInfoMemo />
           <ShopCardViewMemo />
         </main>
       </Layout>

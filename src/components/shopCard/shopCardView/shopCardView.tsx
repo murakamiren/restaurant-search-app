@@ -3,7 +3,6 @@ import { useAtom, useAtomValue } from "jotai";
 import { FC, memo } from "react";
 
 import PaginationMemo from "@/components/pagination/pagination";
-import SearchInfoMemo from "@/components/searchInfo/searchInfo";
 import useShopDataFetch from "@/hooks/fetch/useShopDataFetch";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { searchParamAtom } from "@/store/searchParamAtom";
@@ -33,7 +32,6 @@ const ShopCardView: FC = () => {
 
   return (
     <>
-      <SearchInfoMemo count={shopData.results.results_available} />
       <Flex justify="center">
         <Divider my={12} mx={{ base: 4, lg: 8 }} />
       </Flex>
